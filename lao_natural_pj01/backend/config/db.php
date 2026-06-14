@@ -1,11 +1,9 @@
 <?php
-// backend/config/db.php
-
-$host = 'sql207.infinityfree.com';
-$db   = 'if0_42179849_mim';
-$user = 'if0_42179849';  // From your panel
-$pass = 'hbdmimphaphin69';  // Copy password from InfinityFree MySQL panel
-$charset = 'utf8';
+$host    = getenv('DB_HOST') ?: 'sql207.infinityfree.com';
+$db      = getenv('DB_NAME') ?: 'if0_42179849_mim';
+$user    = getenv('DB_USER') ?: 'if0_42179849';
+$pass    = getenv('DB_PASS') ?: 'hbdmimphaphin69';
+$charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
@@ -15,10 +13,10 @@ $options = [
 ];
 
 try {
-     $pdo = new PDO($dsn, $user, $pass, $options);
+    $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-     http_response_code(500);
-     echo json_encode(['error' => 'Database connection failed: ' . $e->getMessage()]);
-     exit;
+    http_response_code(500);
+    echo json_encode(['error' => 'Database connection failed: ' . $e->getMessage()]);
+    exit;
 }
 ?>
