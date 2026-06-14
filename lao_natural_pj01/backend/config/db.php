@@ -1,10 +1,10 @@
 <?php
 // backend/config/db.php
 
-$host = 'localhost';
-$db   = 'lao_natural_essentials';
-$user = 'root'; // Change as needed for production or local setup
-$pass = '';     // Change as needed
+$host = 'sql207.infinityfree.com';
+$db   = 'if0_42179849_lao_natural_essentials';  // Replace with YOUR database name
+$user = 'if0_42179849';  // From your panel
+$pass = 'hbdmimphaphin69';  // Copy password from InfinityFree MySQL panel
 $charset = 'utf8';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
