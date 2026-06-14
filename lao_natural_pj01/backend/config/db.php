@@ -2,7 +2,7 @@
 // backend/config/db.php
 
 $host = 'sql207.infinityfree.com';
-$db   = 'if0_42179849_lao_natural_essentials';  // Replace with YOUR database name
+$db   = 'if0_42179849_mim';
 $user = 'if0_42179849';  // From your panel
 $pass = 'hbdmimphaphin69';  // Copy password from InfinityFree MySQL panel
 $charset = 'utf8';
