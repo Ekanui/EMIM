@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import api from '../../api/axios'
 
-const BASE_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost/lao_natural_pj01/backend'
+const BASE_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://mimphaphon.kesug.com/backend'
 
 const STATUSES = ['pending_payment', 'prepare', 'sending', 'received']
 const STATUS_LABELS = {

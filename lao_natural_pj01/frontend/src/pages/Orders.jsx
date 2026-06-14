@@ -8,7 +8,7 @@ const STATUS_LABELS = {
   received: { label: 'Delivered', color: 'bg-green-100 text-green-800' },
 }
 
-const BASE_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost/lao_natural_pj01/backend'
+const BASE_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://mimphaphon.kesug.com/backend'
 
 export default function Orders() {
   const [orders, setOrders] = useState([])

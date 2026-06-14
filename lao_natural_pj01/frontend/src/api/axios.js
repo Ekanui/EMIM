@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost/lao_natural_pj01/backend/api',
+  baseURL: import.meta.env.VITE_API_URL || 'https://mimphaphon.kesug.com/backend/api',
   headers: { 'Content-Type': 'application/json' },
 })
 
