@@ -1,0 +1,1 @@
+ALTER TABLE products ADD COLUMN imported_by INT DEFAULT NULL;
