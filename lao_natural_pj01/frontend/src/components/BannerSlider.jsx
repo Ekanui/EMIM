@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-const BASE_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://mimphaphon.kesug.com/backend'
+const BASE_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://emim-production.up.railway.app'
 
 export default function BannerSlider({ banners }) {
   const [current, setCurrent] = useState(0)

@@ -4,7 +4,7 @@ import { ShoppingCart, ArrowLeft } from 'lucide-react'
 import api from '../api/axios'
 import useCartStore from '../store/cartStore'
 
-const BASE_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://mimphaphon.kesug.com/backend'
+const BASE_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://emim-production.up.railway.app'
 
 export default function ProductDetail() {
   const { id } = useParams()

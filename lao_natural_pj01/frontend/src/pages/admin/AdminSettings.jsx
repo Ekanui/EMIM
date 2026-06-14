@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { Upload } from 'lucide-react'
 import api from '../../api/axios'
 
-const BASE_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://mimphaphon.kesug.com/backend'
+const BASE_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://emim-production.up.railway.app'
 
 export default function AdminSettings() {
   const [settings, setSettings] = useState(null)
