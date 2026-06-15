@@ -130,8 +130,6 @@ $statements = [
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
 
-"INSERT IGNORE INTO users (name, email, password, role) VALUES
-('Store Owner','owner@laonatural.com','\$2y\$10\$92IXUNpkjO0rOQ5byMi.euuiHNeVnFLQWOL8hxmj3IibWGaFvuTuS','owner')",
 ];
 
 foreach ($statements as $sql) {
@@ -141,5 +139,9 @@ foreach ($statements as $sql) {
         echo "Error: " . $e->getMessage() . "\n";
     }
 }
+
+$ownerPassword = password_hash('owner123', PASSWORD_BCRYPT);
+$stmt = $pdo->prepare("INSERT IGNORE INTO users (name, email, password, role) VALUES ('Store Owner','owner@laonatural.com',?,'owner')");
+$stmt->execute([$ownerPassword]);
 
 echo "Database initialized successfully.\n";
