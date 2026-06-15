@@ -1,15 +1,6 @@
 <?php
 require_once __DIR__ . '/config/db.php';
 
-// Skip if already initialized
-try {
-    $pdo->query("SELECT 1 FROM users LIMIT 1");
-    echo "Database already initialized.\n";
-    exit(0);
-} catch (PDOException $e) {
-    echo "Initializing database...\n";
-}
-
 $statements = [
 "CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -21,6 +12,12 @@ $statements = [
     phone VARCHAR(20),
     express_company VARCHAR(255),
     profile_picture VARCHAR(500) DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
+
+"CREATE TABLE IF NOT EXISTS categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
 
@@ -130,6 +127,16 @@ $statements = [
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
 
+"CREATE TABLE IF NOT EXISTS hero_banners (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    image_url VARCHAR(500) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
+
+"CREATE TABLE IF NOT EXISTS system_settings (
+    setting_key VARCHAR(100) PRIMARY KEY,
+    setting_value TEXT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
 ];
 
 foreach ($statements as $sql) {
@@ -140,8 +147,25 @@ foreach ($statements as $sql) {
     }
 }
 
+// Insert default owner with correct password hash
 $ownerPassword = password_hash('owner123', PASSWORD_BCRYPT);
 $stmt = $pdo->prepare("INSERT IGNORE INTO users (name, email, password, role) VALUES ('Store Owner','owner@laonatural.com',?,'owner')");
 $stmt->execute([$ownerPassword]);
+
+// Default system settings
+$defaults = [
+    'store_name'        => 'Lao Natural Essentials',
+    'store_phone'       => '+856 20 xxxx xxxx',
+    'store_email'       => 'info@laonatural.com',
+    'bank_name'         => '',
+    'bank_account'      => '',
+    'bank_account_name' => '',
+    'qr_code_url'       => '',
+    'shipping_cost'     => '20000',
+];
+$settingStmt = $pdo->prepare("INSERT IGNORE INTO system_settings (setting_key, setting_value) VALUES (?, ?)");
+foreach ($defaults as $key => $value) {
+    $settingStmt->execute([$key, $value]);
+}
 
 echo "Database initialized successfully.\n";
